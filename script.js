@@ -1,50 +1,55 @@
-$(function () {
-    // Function to update the time-block classes based on the current hour
-    function updateTimeBlocks() {
-      const currentHour = dayjs().hour();
-  
-      $(".time-block").each(function () {
-        const blockHour = parseInt($(this).attr("id").split("-")[1]);
-  
-        if (blockHour < currentHour) {
-          $(this).removeClass("present future").addClass("past");
-        } else if (blockHour === currentHour) {
-          $(this).removeClass("past future").addClass("present");
-        } else {
-          $(this).removeClass("past present").addClass("future");
-        }
-      });
-    }
-  
-    // Function to save user input in local storage
-    function saveUserInput() {
-      const blockId = $(this).parent().attr("id");
-      const userInput = $(this).siblings(".description").val();
-      localStorage.setItem(blockId, userInput);
-    }
-  
-    // Function to load user input from local storage
-    function loadUserInput() {
-      $(".time-block").each(function () {
-        const blockId = $(this).attr("id");
-        const userInput = localStorage.getItem(blockId);
-        if (userInput) {
-          $(this).children(".description").val(userInput);
-        }
-      });
-    }
-  
-    // Event listener for the save buttons
-    $(".saveBtn").on("click", saveUserInput);
-  
-    // Display the current date in the header
-    $("#currentDay").text(dayjs().format("dddd, MMMM D, YYYY"));
-  
-    // Update time-block classes and load user input
-    updateTimeBlocks();
-    loadUserInput();
-  
-    // Update time-block classes every minute
-    setInterval(updateTimeBlocks, 60000);
+$(document).ready(function () {
+  // Display the current day at the top of the calendar
+  $("#currentDay").text(dayjs().format('dddd, MMMM D'));
+
+  // Function to update the time blocks colors based on past, present, or future
+  function updateTimeBlocks() {
+    var currentHour = dayjs().hour();
+
+    // Loop over time blocks
+    $(".time-block").each(function () {
+      var blockHour = parseInt($(this).attr("id").split("-")[1]);
+
+      // Adjust blockHour for PM times
+      if (blockHour < 9) {
+        blockHour += 12;
+      }
+
+      // Add style classes based on comparison with the current hour
+      if (blockHour < currentHour) {
+        $(this).addClass("past").removeClass("present future");
+      } else if (blockHour === currentHour) {
+        $(this).addClass("present").removeClass("past future");
+      } else {
+        $(this).addClass("future").removeClass("past present");
+      }
+    });
+  }
+
+  // Call updateTimeBlocks on page load
+  updateTimeBlocks();
+
+  // Set interval to check every minute if time blocks need to be updated
+  setInterval(updateTimeBlocks, 60000);
+
+  // Function to load saved tasks from localStorage
+  function loadTasks() {
+    $(".time-block").each(function () {
+      var id = $(this).attr("id");
+      var task = localStorage.getItem(id);
+      if (task) {
+        $(this).find(".description").val(task);
+      }
+    });
+  }
+
+  // Call loadTasks on page load
+  loadTasks();
+
+  // Save button click listener
+  $(".saveBtn").click(function () {
+    var hourId = $(this).closest(".time-block").attr("id");
+    var task = $(this).siblings(".description").val();
+    localStorage.setItem(hourId, task);
   });
-  
+});
