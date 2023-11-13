@@ -1,39 +1,54 @@
 # Module-5-Work Day Scheduler Starter Code
 
-* A simple calendar application that allows a user to save events for each hour of a typical working day (9am–5pm).
+## Table of Contents
 
-## User Stories
+- [Description](#description)
 
-* AS AN employee with a busy schedule
+- [Acceptance Criteria](#acceptance criteria)
 
-* I WANT to add important events to a daily planner
+- [Link](#link)
 
-* SO THAT I can manage my time effectively
+- [Contact](#contact)
 
-### Acceptance Criteria
+## Description
 
-* GIVEN I am using a daily planner to create a schedule
+- A simple calendar application that allows a user to save events for each hour of a typical working day (9am–5pm).
 
-* WHEN I open the planner
+## Acceptance Criteria
 
-* THEN the current day is displayed at the top of the calendar
+- GIVEN I am using a daily planner to create a schedule
 
-* WHEN I scroll down
+- WHEN I open the planner
 
-* THEN I am presented with time blocks for standard business hours of 9am to 5pm
+- THEN the current day is displayed at the top of the calendar
 
-* WHEN I view the time blocks for that day
+- WHEN I scroll down
 
-* THEN each time block is color-coded to indicate whether it is in the past, present, or future
+- THEN I am presented with time blocks for standard business hours of 9am to 5pm
 
-* WHEN I click into a time block
+- WHEN I view the time blocks for that day
 
-* THEN I can enter an event
+- THEN each time block is color-coded to indicate whether it is in the past, present, or future
 
-* WHEN I click the save button for that time block
+- WHEN I click into a time block
 
-* THEN the text for that event is saved in local storage
+- THEN I can enter an event
 
-* WHEN I refresh the page
+- WHEN I click the save button for that time block
 
-* THEN the saved events persist
+- THEN the text for that event is saved in local storage
+
+- WHEN I refresh the page
+
+- THEN the saved events persist
+
+## Link
+
+<http://127.0.0.1:5503/Module-5-Scheduler/index.html>
+
+## Contact
+
+For additional questions,
+
+![GitHub]
+ <https://github.com/JObengDappah/Module-5-Scheduler>
